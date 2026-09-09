@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy – Subsy Subscription Tracker</title>
+  <meta name="description" content="Privacy Policy for Subsy: Offline Subscription Tracker and Bill Reminder for Android."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #070709;
+      --card: #0f1015;
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --primary: #8b5cf6;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      line-height: 1.7;
+      padding: 40px 20px 80px;
+    }
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 800;
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .date {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    .content-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 24px;
+    }
+    @media (min-width: 640px) {
+      .content-box { padding: 40px; }
+    }
+    h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin: 28px 0 10px;
+    }
+    h2:first-of-type { margin-top: 0; }
+    p {
+      color: var(--text-muted);
+      font-size: 14.5px;
+      margin-bottom: 14px;
+    }
+    ul {
+      margin: 10px 0 18px 20px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    li { margin-bottom: 8px; }
+    a {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 12px;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">💳</div>
+        <span>Subsy</span>
+      </a>
+      <h1>Privacy Policy</h1>
+      <div class="date">Last updated: September 2026</div>
+    </div>
+
+    <div class="content-box">
+      <h2>1. Overview</h2>
+      <p>Subsy ("we", "our", or "the app") provides a smart subscription tracker and bill reminder application for Android. We are deeply committed to protecting your privacy. Subsy is built on an offline-first foundation, meaning your personal financial records are never uploaded to our servers.</p>
+
+      <h2>2. Data Collection and Storage</h2>
+      <p><strong>Local Device Storage:</strong> All subscription names, renewal dates, billing cycles, pricing, notes, and custom categories that you enter into Subsy are stored strictly on your local device using high-performance SQLite / Drift database architecture.</p>
+      <p><strong>Zero Bank Linking:</strong> Subsy does NOT request, access, or store your bank accounts, credit card credentials, net-banking passwords, or OTPs. All data is entered manually or via built-in templates.</p>
+
+      <h2>3. Advertisements & Google AdMob</h2>
+      <p>To support ongoing development of the free version, Subsy displays non-intrusive advertisements served by Google AdMob. Google AdMob may collect and use device identifiers (such as the Google Advertising ID) and anonymized diagnostic data to serve personalized or non-personalized ads in accordance with Google's Privacy Policy: <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google Ads Privacy & Terms</a>.</p>
+      <p>Users may choose to upgrade to Subsy Pro for a 100% ad-free experience.</p>
+
+      <h2>4. Permissions Used by Subsy</h2>
+      <ul>
+        <li><strong>POST_NOTIFICATIONS / SCHEDULE_EXACT_ALARM:</strong> Used strictly to schedule local device alarms for upcoming subscription renewal reminders and free trial expiration warnings. No notification data leaves your device.</li>
+        <li><strong>USE_BIOMETRIC / USE_FINGERPRINT:</strong> Used locally to lock and unlock the app using your device's biometric authentication. Biometric credentials are processed entirely by Android's hardware security layer and cannot be accessed or stored by Subsy.</li>
+      </ul>
+
+      <h2>5. Data Portability & Backup</h2>
+      <p>Subsy allows you to generate manual JSON backups and CSV exports of your subscriptions. These files are saved locally on your device or wherever you choose to store them (such as your personal cloud storage). We have no access to these backup files.</p>
+
+      <h2>6. Children's Privacy</h2>
+      <p>Subsy is not directed to individuals under the age of 13. We do not knowingly collect personal information from children.</p>
+
+      <h2>7. Changes to this Policy</h2>
+      <p>We may update our Privacy Policy from time to time. Any updates will be posted on this page with a revised "Last updated" date.</p>
+
+      <h2>8. Contact Information</h2>
+      <p>If you have any questions or concerns regarding this Privacy Policy, you can contact the developer directly at:</p>
+      <p><strong>Email:</strong> <a href="mailto:ranu02769@gmail.com">ranu02769@gmail.com</a></p>
+    </div>
+
+    <div class="footer">
+      © 2026 Subsy App. All rights reserved. | <a href="index.html">Return to Home</a>
+    </div>
+  </div>
+</body>
+</html>
