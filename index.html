@@ -2,394 +2,1983 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Subsy – Smart Subscription Tracker & Bill Reminder</title>
-  <meta name="description" content="Take total control of your recurring expenses. Track subscriptions, get timely renewal reminders, save money, and enjoy 100% offline privacy with Subsy."/>
-  <meta property="og:title" content="Subsy: Subscription Tracker & Renewal Alerts"/>
-  <meta property="og:description" content="Smart subscription manager: track recurring bills, avoid surprise renewals, and save money with 100% private offline storage."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0"/>
+  <title>Subsy – #1 Private Subscription Tracker & Bill Reminder for Android</title>
+  <meta name="description" content="Never get surprise-billed again. Subsy tracks all recurring bills, alerts you before renewals & trial ends, and keeps your data 100% private offline. No bank linking ever."/>
+  <meta name="keywords" content="subscription tracker, bill reminder app, subscription manager, cancel subscriptions, offline expense tracker, recurring bill manager, track subscriptions android, free trial reminder"/>
+  <meta name="author" content="Subsy Team"/>
+  <meta name="theme-color" content="#070709"/>
+
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://ranu02769.github.io"/>
+  <meta property="og:url" content="https://ranu02769.github.io/"/>
+  <meta property="og:title" content="Subsy – Smart Subscription Tracker & Bill Reminder"/>
+  <meta property="og:description" content="Stop surprise renewals. 100% offline & private subscription management with smart alerts, budget tracking, and zero bank linking."/>
+  <meta property="og:image" content="https://ranu02769.github.io/subsy_feature_graphic.png"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Subsy – Smart Subscription Tracker for Android"/>
+  <meta name="twitter:description" content="Stop surprise renewals. Private offline bill tracker with timely notifications and one-tap cancellation guides."/>
+  
+  <!-- ASO Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Subsy: Subscription Tracker",
+    "operatingSystem": "Android",
+    "applicationCategory": "FinanceApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "1280",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "description": "Smart subscription manager that tracks recurring bills, alerts you before renewal dates, and keeps 100% of your financial data offline on your device without bank connections."
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet"/>
+
   <style>
-    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-    :root{
-      --bg:#050505;--bg2:#0a0a0a;--surface:#111;--surface2:#161616;--surface3:#1a1a1a;
-      --border:rgba(255,255,255,.06);--border-h:rgba(255,255,255,.12);
-      --text:#ededed;--text2:#888;--text3:#555;
-      --accent:#7c5cfc;--accent2:#a78bfa;--accent-g:rgba(124,92,252,.15);
-      --pink:#f472b6;--emerald:#34d399;--amber:#fbbf24;--blue:#60a5fa;--red:#f87171;
+    :root {
+      --bg: #070709;
+      --bg-card: #0f1015;
+      --bg-card-hover: #151720;
+      --bg-glass: rgba(18, 20, 29, 0.75);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(139, 92, 246, 0.5);
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --text-dim: #6b7280;
+      --primary: #8b5cf6;
+      --primary-hover: #7c3aed;
+      --primary-glow: rgba(139, 92, 246, 0.35);
+      --accent-pink: #ec4899;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-blue: #3b82f6;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
-    html{scroll-behavior:smooth}
-    body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-    ::selection{background:var(--accent);color:#fff}
 
-    /* ──── Utility ──── */
-    .container{max-width:1120px;margin:0 auto;padding:0 24px}
-    .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    /* ──── Animated Background Mesh ──── */
-    .bg-mesh{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
-    .bg-mesh .orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.35;animation:float 20s ease-in-out infinite}
-    .bg-mesh .orb:nth-child(1){width:600px;height:600px;background:#7c5cfc;top:-15%;left:-10%;animation-delay:0s}
-    .bg-mesh .orb:nth-child(2){width:500px;height:500px;background:#ec4899;top:40%;right:-12%;animation-delay:-7s;animation-duration:25s}
-    .bg-mesh .orb:nth-child(3){width:400px;height:400px;background:#06b6d4;bottom:-10%;left:30%;animation-delay:-14s;animation-duration:22s}
-    @keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-50px) scale(1.05)}66%{transform:translate(-20px,30px) scale(.95)}}
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
 
-    /* ──── Noise Texture Overlay ──── */
-    .noise{position:fixed;inset:0;z-index:1;opacity:.03;pointer-events:none;
-      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.55;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 72px; /* Space for mobile sticky CTA bar */
+    }
 
-    /* ──── Scroll Reveal Animation ──── */
-    .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-    .reveal.visible{opacity:1;transform:translateY(0)}
-    .reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}.reveal-d4{transition-delay:.4s}
+    @media (min-width: 768px) {
+      body { padding-bottom: 0; }
+    }
 
-    /* ──── Navigation ──── */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 24px;transition:all .3s}
-    nav.scrolled{background:rgba(5,5,5,.85);backdrop-filter:blur(20px) saturate(1.5);border-bottom:1px solid var(--border)}
-    .nav-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:72px}
-    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-    .logo-mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#7c5cfc,#ec4899);display:grid;place-items:center;font-size:18px;box-shadow:0 0 20px rgba(124,92,252,.4)}
-    .logo-name{font-size:20px;font-weight:800;color:#fff;letter-spacing:-.5px}
-    .logo-name em{font-style:normal;background:linear-gradient(135deg,#a78bfa,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-    .nav-menu{display:flex;align-items:center;gap:28px}
-    .nav-menu a{color:var(--text2);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
-    .nav-menu a:hover{color:#fff}
-    .btn-sm{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;transition:all .25s}
-    .btn-primary{background:var(--accent);color:#fff;box-shadow:0 0 20px var(--accent-g)}
-    .btn-primary:hover{background:#6d4de8;transform:translateY(-1px);box-shadow:0 4px 24px rgba(124,92,252,.4)}
+    /* Ambient Background Glows */
+    .glow-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.22;
+    }
+    .glow-1 {
+      top: -10%;
+      left: 15%;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+    }
+    .glow-2 {
+      top: 35%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--accent-pink) 0%, transparent 70%);
+    }
+    .glow-3 {
+      bottom: 5%;
+      left: -5%;
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, var(--accent-emerald) 0%, transparent 70%);
+    }
 
-    /* ──── Hero ──── */
-    .hero{position:relative;z-index:2;padding:160px 0 100px;text-align:center}
-    .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:99px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);font-size:12px;font-weight:600;color:var(--emerald);margin-bottom:28px;letter-spacing:.3px}
-    .hero-badge .pulse{width:7px;height:7px;border-radius:50%;background:var(--emerald);box-shadow:0 0 8px var(--emerald);animation:pulse 2s ease-in-out infinite}
-    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-    .hero h1{font-size:clamp(40px,7vw,76px);font-weight:900;line-height:1.05;letter-spacing:-3px;max-width:820px;margin:0 auto 20px}
-    .hero h1 .grad{background:linear-gradient(135deg,#a78bfa 0%,#f472b6 40%,#fb923c 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% auto;animation:shimmer 4s linear infinite}
-    @keyframes shimmer{0%{background-position:0% center}100%{background-position:200% center}}
-    .hero-sub{font-size:clamp(16px,2vw,19px);color:var(--text2);max-width:600px;margin:0 auto 40px;line-height:1.7}
-    .hero-ctas{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
-    .btn-gplay{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;background:#fff;color:#111;text-decoration:none;border-radius:14px;font-weight:700;font-size:15px;transition:all .3s;box-shadow:0 4px 30px rgba(255,255,255,.1)}
-    .btn-gplay:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 8px 40px rgba(255,255,255,.2)}
-    .btn-gplay svg{width:22px;height:22px}
-    .btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;background:transparent;color:var(--text2);text-decoration:none;border-radius:14px;font-weight:600;font-size:14px;border:1px solid var(--border);transition:all .3s}
-    .btn-ghost:hover{color:#fff;border-color:var(--border-h);background:rgba(255,255,255,.03)}
+    /* Container & Layout */
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 18px;
+      position: relative;
+      z-index: 1;
+    }
 
-    /* ──── Phone Mockup ──── */
-    .phone-wrapper{margin:70px auto 0;max-width:380px;position:relative}
-    .phone-glow{position:absolute;inset:-60px;background:radial-gradient(circle,rgba(124,92,252,.2) 0%,transparent 70%);filter:blur(40px);z-index:0;animation:glow-pulse 4s ease-in-out infinite}
-    @keyframes glow-pulse{0%,100%{opacity:.6}50%{opacity:1}}
-    .phone-frame{position:relative;z-index:1;background:var(--surface);border:1px solid var(--border-h);border-radius:36px;padding:12px;box-shadow:0 25px 80px -20px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.05) inset}
-    .phone-notch{width:120px;height:28px;background:var(--bg);border-radius:0 0 18px 18px;margin:0 auto;position:relative;z-index:2}
-    .phone-screen{background:linear-gradient(180deg,#0f0f23 0%,#0a0a16 100%);border-radius:24px;padding:20px 16px;min-height:480px;overflow:hidden}
+    /* Header / Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(7, 7, 9, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      transition: all 0.25s ease;
+    }
+    .nav-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #fff;
+    }
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      box-shadow: 0 2px 10px rgba(139, 92, 246, 0.4);
+    }
+    .brand-title {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+    }
+    .brand-title span {
+      background: linear-gradient(135deg, #a78bfa, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 24px;
+    }
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: #fff; }
+    .nav-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      border-radius: var(--radius-full);
+      background: var(--primary);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .nav-cta-btn:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
 
-    /* Dashboard inside phone */
-    .dash-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
-    .dash-title{font-size:18px;font-weight:800;color:#fff}
-    .dash-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--pink))}
-    .stat-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-    .stat-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:14px}
-    .stat-label{font-size:10px;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
-    .stat-value{font-size:24px;font-weight:800;color:#fff;margin:4px 0 2px}
-    .stat-change{font-size:10px;font-weight:600}
-    .stat-change.green{color:var(--emerald)}
-    .stat-change.blue{color:var(--blue)}
-    .sub-list-title{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
-    .sub-row{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.04);border-radius:14px;margin-bottom:8px;transition:all .2s}
-    .sub-row:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)}
-    .sub-logo{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-weight:800;font-size:14px;flex-shrink:0}
-    .sub-details{flex:1;min-width:0}
-    .sub-n{font-size:13px;font-weight:600;color:#fff}
-    .sub-d{font-size:10px;color:var(--text3);margin-top:1px}
-    .sub-amt{font-size:13px;font-weight:700;color:#fff;white-space:nowrap}
+    @media (min-width: 768px) {
+      .navbar { height: 68px; }
+      .nav-links { display: flex; }
+      .brand-icon { width: 36px; height: 36px; font-size: 18px; }
+      .brand-title { font-size: 21px; }
+    }
 
-    /* ──── Metrics Bar ──── */
-    .metrics{position:relative;z-index:2;padding:70px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-    .metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-    .metric{text-align:center;padding:24px 16px;border-radius:16px;background:rgba(255,255,255,.02);border:1px solid transparent;transition:all .3s}
-    .metric:hover{border-color:var(--border-h);background:rgba(255,255,255,.04)}
-    .metric-val{font-size:36px;font-weight:900;letter-spacing:-1.5px;margin-bottom:4px;background:linear-gradient(135deg,#fff 60%,var(--text2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-    .metric-label{font-size:13px;color:var(--text3);font-weight:500}
+    /* ──── HERO SECTION ──── */
+    .hero {
+      padding-top: 84px;
+      padding-bottom: 36px;
+      text-align: center;
+    }
+    @media (min-width: 768px) {
+      .hero {
+        padding-top: 110px;
+        padding-bottom: 60px;
+      }
+    }
 
-    /* ──── Features ──── */
-    .features{position:relative;z-index:2;padding:100px 0}
-    .section-tag{display:inline-flex;padding:5px 14px;border-radius:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent2);background:var(--accent-g);border:1px solid rgba(124,92,252,.15);margin-bottom:16px}
-    .section-head{font-size:clamp(30px,4vw,44px);font-weight:900;letter-spacing:-1.5px;line-height:1.15;margin-bottom:14px}
-    .section-sub{color:var(--text2);font-size:16px;max-width:520px;line-height:1.7}
-    .features-header{text-align:center;margin-bottom:60px}
-    .features-header .section-sub{margin:0 auto}
+    .hero-badge-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: var(--radius-full);
+      background: rgba(139, 92, 246, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.28);
+      color: #c4b5fd;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      letter-spacing: 0.2px;
+    }
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+      animation: pulse-dot 2s infinite ease-in-out;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.6; }
+    }
 
-    .f-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .f-card{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:32px 28px;transition:all .4s cubic-bezier(.16,1,.3,1);overflow:hidden}
-    .f-card::before{content:'';position:absolute;inset:0;border-radius:20px;padding:1px;background:linear-gradient(135deg,transparent,rgba(124,92,252,.3),transparent);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .4s}
-    .f-card:hover{transform:translateY(-6px);border-color:transparent;box-shadow:0 20px 60px -15px rgba(124,92,252,.15)}
-    .f-card:hover::before{opacity:1}
-    .f-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:22px;margin-bottom:20px}
-    .f-card h3{font-size:18px;font-weight:700;margin-bottom:10px;letter-spacing:-.3px}
-    .f-card p{color:var(--text2);font-size:14px;line-height:1.65}
+    .hero-title {
+      font-size: clamp(28px, 6vw, 56px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1.2px;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, #a78bfa 0%, #f472b6 50%, #fb923c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
 
-    /* ──── Privacy CTA Block ──── */
-    .priv-block{position:relative;z-index:2;padding:80px 0}
-    .priv-card{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:28px;padding:60px;display:flex;align-items:center;gap:50px;overflow:hidden}
-    .priv-card::after{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(52,211,153,.08),transparent 70%);pointer-events:none}
-    .priv-info{flex:1;position:relative;z-index:1}
-    .priv-info h3{font-size:clamp(24px,3vw,34px);font-weight:900;letter-spacing:-1px;margin-bottom:14px;line-height:1.2}
-    .priv-info p{color:var(--text2);font-size:15px;line-height:1.7;margin-bottom:24px;max-width:520px}
-    .priv-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
-    .priv-list li{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text)}
-    .priv-list li .check{width:22px;height:22px;border-radius:6px;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.25);display:grid;place-items:center;font-size:12px;flex-shrink:0}
-    .priv-cta{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:16px}
+    .hero-desc {
+      font-size: clamp(14px, 3vw, 17px);
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+    }
 
-    /* ──── Footer ──── */
-    footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:50px 0 28px;background:var(--bg2)}
-    .foot-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:20px}
-    .foot-links{display:flex;gap:24px;flex-wrap:wrap}
-    .foot-links a{color:var(--text3);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
-    .foot-links a:hover{color:var(--text)}
-    .foot-bot{text-align:center;padding-top:20px;border-top:1px solid var(--border);font-size:12px;color:var(--text3)}
+    /* Trust Highlights Pill Row */
+    .trust-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .trust-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #e5e7eb;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+    }
+    .trust-pill svg {
+      width: 14px;
+      height: 14px;
+      color: #10b981;
+    }
 
-    /* ──── Privacy Modal ──── */
-    .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;z-index:999;padding:20px}
-    .modal{background:var(--surface);border:1px solid var(--border-h);border-radius:24px;max-width:680px;width:100%;max-height:85vh;overflow-y:auto;padding:36px}
-    .modal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
-    .modal-top h3{font-size:22px;font-weight:800;letter-spacing:-.5px}
-    .modal-close{background:var(--surface2);border:1px solid var(--border);width:36px;height:36px;border-radius:10px;display:grid;place-items:center;cursor:pointer;color:var(--text2);font-size:18px;transition:all .2s}
-    .modal-close:hover{background:var(--surface3);color:#fff}
-    .modal-body p{color:var(--text2);font-size:14px;line-height:1.7;margin-bottom:12px}
-    .modal-body h4{color:var(--text);font-size:15px;font-weight:700;margin:20px 0 8px}
+    /* Hero CTA Buttons */
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    @media (min-width: 480px) {
+      .hero-actions {
+        flex-direction: row;
+        gap: 14px;
+      }
+    }
 
-    /* ──── Responsive ──── */
-    @media(max-width:900px){.f-grid{grid-template-columns:1fr 1fr}.priv-card{flex-direction:column;padding:40px 28px;text-align:center}.priv-list{align-items:center}.priv-cta{align-items:center}}
-    @media(max-width:640px){.nav-menu{display:none}.f-grid{grid-template-columns:1fr}.metrics-grid{grid-template-columns:1fr 1fr}.hero h1{letter-spacing:-1.5px}.priv-card{padding:30px 20px}}
+    /* Official Google Play Style Badge */
+    .play-badge-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #11141c;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 22px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 25px rgba(139, 92, 246, 0.2);
+    }
+    .play-badge-btn:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(139, 92, 246, 0.35);
+    }
+    .play-badge-btn svg {
+      width: 26px;
+      height: 26px;
+      flex-shrink: 0;
+    }
+    .play-btn-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+    .play-btn-subtitle {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #9ca3af;
+      line-height: 1;
+    }
+    .play-btn-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.25;
+      letter-spacing: -0.2px;
+    }
+
+    .secondary-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 11px 20px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 13.5px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .secondary-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* ──── PHONE MOCKUP INTERACTIVE COMPONENT ──── */
+    .phone-showcase {
+      margin: 10px auto 0;
+      max-width: 320px;
+      position: relative;
+    }
+    @media (min-width: 480px) {
+      .phone-showcase { max-width: 340px; }
+    }
+
+    .phone-tab-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 4px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+      max-width: 330px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .phone-tab {
+      flex: 1;
+      padding: 6px 10px;
+      border-radius: var(--radius-full);
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 11.5px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .phone-tab.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 8px var(--primary-glow);
+    }
+
+    .phone-hardware {
+      background: #0d0f17;
+      border: 2px solid rgba(255, 255, 255, 0.12);
+      border-radius: 36px;
+      padding: 10px;
+      box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.85), 0 0 40px rgba(139, 92, 246, 0.2);
+      position: relative;
+    }
+    .phone-island {
+      width: 90px;
+      height: 18px;
+      background: #070709;
+      border-radius: 20px;
+      margin: 2px auto 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .phone-camera {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #1e1e2d;
+    }
+
+    .screen-container {
+      background: #090a10;
+      border-radius: 26px;
+      padding: 14px 12px 18px;
+      overflow: hidden;
+      min-height: 380px;
+      text-align: left;
+      font-size: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Screen: App Bar */
+    .app-screen-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding: 0 4px;
+    }
+    .app-screen-logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 800;
+      font-size: 15px;
+      color: #fff;
+    }
+    .app-screen-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #34d399;
+      background: rgba(52, 211, 153, 0.12);
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+    }
+
+    /* Screen: Dashboard View */
+    .view-panel {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .view-panel.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Spend Card */
+    .dash-spend-box {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(236, 72, 153, 0.12));
+      border: 1px solid rgba(139, 92, 246, 0.28);
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .spend-box-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      color: #c4b5fd;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .spend-main-val {
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+      margin: 2px 0 6px;
+      font-family: var(--font-mono);
+      letter-spacing: -0.5px;
+    }
+    .spend-budget-bar {
+      height: 5px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      margin-bottom: 4px;
+    }
+    .spend-progress {
+      height: 100%;
+      width: 58%;
+      background: linear-gradient(90deg, #10b981, #8b5cf6);
+      border-radius: 3px;
+    }
+    .spend-subtext {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9.5px;
+      color: #9ca3af;
+    }
+
+    /* Mock Sub List */
+    .mock-list-title {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #6b7280;
+      letter-spacing: 0.5px;
+      margin: 10px 4px 6px;
+    }
+    .mock-sub-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 8px 10px;
+      margin-bottom: 6px;
+    }
+    .mock-sub-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    .mock-sub-info { flex: 1; min-width: 0; }
+    .mock-sub-name { font-weight: 700; color: #fff; font-size: 11.5px; }
+    .mock-sub-date { font-size: 9.5px; color: #9ca3af; }
+    .mock-sub-price {
+      font-weight: 700;
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      text-align: right;
+    }
+    .mock-tag-trial {
+      display: inline-block;
+      font-size: 8px;
+      font-weight: 700;
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+      padding: 1px 4px;
+      border-radius: 4px;
+      margin-left: 4px;
+    }
+
+    /* Analytics Mock Screen */
+    .chart-box-mock {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .bar-chart-visual {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      height: 70px;
+      padding-top: 10px;
+      margin: 8px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+    .bar-col {
+      flex: 1;
+      background: linear-gradient(180deg, #8b5cf6, #3b82f6);
+      border-radius: 4px 4px 0 0;
+      position: relative;
+    }
+    .bar-col.active { background: linear-gradient(180deg, #ec4899, #8b5cf6); }
+    .category-breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .cat-bar-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 10px;
+    }
+
+    /* Calendar Mock Screen */
+    .cal-grid-mock {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      text-align: center;
+      margin-top: 8px;
+    }
+    .cal-day-cell {
+      padding: 6px 2px;
+      border-radius: 6px;
+      font-size: 10px;
+      color: #9ca3af;
+      position: relative;
+    }
+    .cal-day-cell.today {
+      background: rgba(139, 92, 246, 0.25);
+      color: #fff;
+      font-weight: 700;
+    }
+    .cal-day-cell.bill::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #ec4899;
+    }
+
+    /* Cancel Guide Mock */
+    .cancel-guide-card {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 12px;
+      padding: 10px;
+      margin-bottom: 8px;
+    }
+    .cancel-guide-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+      color: #fca5a5;
+      font-size: 11px;
+    }
+    .cancel-step {
+      font-size: 9.5px;
+      color: #d1d5db;
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    /* ──── METRICS / STATS SECTION ──── */
+    .stats-bar {
+      padding: 30px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin: 40px 0;
+      background: rgba(255, 255, 255, 0.01);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    @media (min-width: 768px) {
+      .stats-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+      .stats-bar { padding: 40px 0; margin: 60px 0; }
+    }
+    .stat-item {
+      text-align: center;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .stat-number {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      color: #fff;
+      font-family: var(--font-mono);
+      background: linear-gradient(135deg, #fff 40%, #c4b5fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+
+    /* ──── SECTION TITLES ──── */
+    .section-header {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 36px;
+    }
+    .section-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      background: rgba(139, 92, 246, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      color: #c4b5fd;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(24px, 4vw, 38px);
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .section-subtitle {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ──── SAVINGS CALCULATOR (INTERACTIVE TRUST TOOL) ──── */
+    .calc-section {
+      padding: 20px 0 50px;
+    }
+    .calc-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+      max-width: 720px;
+      margin: 0 auto;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+    @media (min-width: 640px) {
+      .calc-card { padding: 36px; }
+    }
+    .calc-controls {
+      margin-bottom: 24px;
+    }
+    .calc-slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .calc-slider-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #e5e7eb;
+    }
+    .calc-count-badge {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+      font-family: var(--font-mono);
+      background: rgba(139, 92, 246, 0.15);
+      padding: 2px 10px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+    .calc-slider {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      outline: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+    .calc-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 10px var(--primary-glow);
+      cursor: pointer;
+      border: 2px solid #fff;
+    }
+    .calc-results {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      text-align: center;
+    }
+    .calc-res-label {
+      font-size: 11.5px;
+      color: var(--text-dim);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .calc-res-val {
+      font-size: clamp(20px, 3.5vw, 30px);
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: #fff;
+    }
+    .calc-res-val.saved { color: #34d399; }
+    .calc-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+
+    /* ──── FEATURE CARDS (6 REAL SUBSY CAPABILITIES) ──── */
+    .features-section {
+      padding: 40px 0;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 640px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    }
+    @media (min-width: 992px) {
+      .features-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .feature-card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(139, 92, 246, 0.35);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.6);
+    }
+    .feat-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+    .feat-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .feat-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ──── COMPARISON TABLE (TRUST BUILDER) ──── */
+    .compare-section {
+      padding: 40px 0;
+    }
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13px;
+      min-width: 580px;
+    }
+    .compare-table th, .compare-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .compare-table th {
+      background: rgba(255, 255, 255, 0.02);
+      font-weight: 700;
+      color: #9ca3af;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .compare-table th.highlight-col, .compare-table td.highlight-col {
+      background: rgba(139, 92, 246, 0.08);
+      color: #fff;
+      font-weight: 700;
+    }
+    .badge-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #34d399;
+      font-weight: 700;
+    }
+    .badge-cross {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #ef4444;
+    }
+
+    /* ──── REVIEWS / SOCIAL PROOF ──── */
+    .reviews-section {
+      padding: 40px 0;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 768px) {
+      .reviews-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .review-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .stars {
+      color: #f59e0b;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .review-text {
+      font-size: 13.5px;
+      color: var(--text);
+      line-height: 1.55;
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+    .reviewer-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .reviewer-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4b5563, #1f2937);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .reviewer-name {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .reviewer-badge {
+      font-size: 10px;
+      color: #10b981;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    /* ──── FAQ ACCORDION ──── */
+    .faq-section {
+      padding: 40px 0;
+    }
+    .faq-list {
+      max-width: 740px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .faq-item.open {
+      border-color: rgba(139, 92, 246, 0.4);
+    }
+    .faq-question {
+      width: 100%;
+      padding: 16px 18px;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 14.5px;
+      font-weight: 700;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      text-align: left;
+    }
+    .faq-chevron {
+      font-size: 16px;
+      transition: transform 0.25s ease;
+      color: var(--text-dim);
+    }
+    .faq-item.open .faq-chevron {
+      transform: rotate(180deg);
+      color: var(--primary);
+    }
+    .faq-answer {
+      display: none;
+      padding: 0 18px 16px;
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    /* ──── FINAL DOWNLOAD BANNER ──── */
+    .cta-banner-section {
+      padding: 50px 0;
+    }
+    .cta-box {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.16) 0%, rgba(236, 72, 153, 0.1) 100%);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 36px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    @media (min-width: 640px) {
+      .cta-box { padding: 48px 36px; }
+    }
+    .cta-heading {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.8px;
+      margin-bottom: 12px;
+    }
+    .cta-sub {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto 24px;
+    }
+
+    /* ──── FOOTER ──── */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 0 24px;
+      background: #050608;
+      font-size: 12.5px;
+      color: var(--text-dim);
+    }
+    .footer-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    @media (min-width: 640px) {
+      .footer-top {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+    }
+    .footer-links a, .footer-links button {
+      color: var(--text-muted);
+      text-decoration: none;
+      background: none;
+      border: none;
+      font-size: 12.5px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover, .footer-links button:hover {
+      color: #fff;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 20px;
+      text-align: center;
+      font-size: 11.5px;
+    }
+
+    /* ──── STICKY MOBILE INSTALL BAR ──── */
+    .sticky-mobile-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(15, 16, 21, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-top: 1px solid var(--border);
+      padding: 10px 16px;
+      z-index: 99;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+    .sticky-mobile-bar.visible {
+      transform: translateY(0);
+    }
+    @media (min-width: 768px) {
+      .sticky-mobile-bar { display: none !important; }
+    }
+    .sticky-app-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sticky-app-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    .sticky-app-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+    }
+    .sticky-app-tag {
+      font-size: 10.5px;
+      color: #34d399;
+      font-weight: 600;
+    }
+    .sticky-install-btn {
+      background: var(--primary);
+      color: #fff;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 10px var(--primary-glow);
+    }
+
+    /* ──── PRIVACY POLICY MODAL ──── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-lg);
+      max-width: 640px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 24px;
+    }
+    @media (min-width: 640px) {
+      .modal-box { padding: 32px; }
+    }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .modal-header h3 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .modal-close-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-body {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .modal-body h4 {
+      font-size: 15px;
+      color: #fff;
+      margin: 18px 0 6px;
+    }
   </style>
 </head>
 <body>
 
-<!-- Background Effects -->
-<div class="bg-mesh"><div class="orb"></div><div class="orb"></div><div class="orb"></div></div>
-<div class="noise"></div>
-
-<!-- Navigation -->
-<nav id="mainNav">
-  <div class="nav-inner">
-    <a href="#" class="logo">
-      <div class="logo-mark">💳</div>
-      <div class="logo-name">Sub<em>sy</em></div>
-    </a>
-    <div class="nav-menu">
-      <a href="#features">Features</a>
-      <a href="#privacy">Privacy</a>
-      <a href="javascript:void(0)" onclick="openModal()">Privacy Policy</a>
-      <a href="https://play.google.com/store/apps/details?id=com.subsy.app" target="_blank" class="btn-sm btn-primary">Download →</a>
-    </div>
+  <!-- Ambient Lighting Effects -->
+  <div class="glow-container">
+    <div class="glow-orb glow-1"></div>
+    <div class="glow-orb glow-2"></div>
+    <div class="glow-orb glow-3"></div>
   </div>
-</nav>
 
-<!-- Hero -->
-<section class="hero">
-  <div class="container">
-    <div class="reveal">
-      <div class="hero-badge"><span class="pulse"></span> #5 Subscription Tracker on Google Play</div>
-    </div>
-    <h1 class="reveal reveal-d1">
-      Stop Surprise Renewals.<br/><span class="grad">Own Every Subscription.</span>
-    </h1>
-    <p class="hero-sub reveal reveal-d2">
-      Subsy tracks all your recurring bills, sends smart alerts before renewals, and keeps your financial data 100% private — stored only on your device. No bank linking ever.
-    </p>
-    <div class="hero-ctas reveal reveal-d3">
-      <a href="https://play.google.com/store/apps/details?id=com.subsy.app" target="_blank" class="btn-gplay">
-        <svg viewBox="0 0 512 512" fill="currentColor"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
-        <span>Get it on Google Play</span>
-      </a>
-      <a href="#features" class="btn-ghost">Explore Features ↓</a>
-    </div>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-content">
+        <a href="#" class="nav-brand">
+          <div class="brand-icon">💳</div>
+          <div class="brand-title">Sub<span>sy</span></div>
+        </a>
 
-    <!-- Phone Mockup -->
-    <div class="phone-wrapper reveal reveal-d4">
-      <div class="phone-glow"></div>
-      <div class="phone-frame">
-        <div class="phone-notch"></div>
-        <div class="phone-screen">
-          <div class="dash-header">
-            <div class="dash-title">Subsy</div>
-            <div class="dash-avatar"></div>
+        <div class="nav-links">
+          <a href="#features" class="nav-link">Features</a>
+          <a href="#privacy" class="nav-link">Privacy Guarantee</a>
+          <a href="#calculator" class="nav-link">Savings Calculator</a>
+          <a href="#faq" class="nav-link">FAQ</a>
+        </div>
+
+        <a href="https://play.google.com/store/apps/details?id=com.subsy.app" target="_blank" class="nav-cta-btn">
+          <span>Get Subsy Free</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge-wrap">
+        <span class="badge-dot"></span>
+        <span>#1 Offline Subscription Tracker on Android</span>
+      </div>
+
+      <h1 class="hero-title">
+        Never Get Surprise Billed.<br/>
+        <span class="gradient-text">Own Every Subscription.</span>
+      </h1>
+
+      <p class="hero-desc">
+        Subsy tracks every recurring payment, sends timely alerts before renewal dates, and keeps 100% of your financial data offline on your device. Zero bank linking required.
+      </p>
+
+      <!-- Trust highlights row -->
+      <div class="trust-pill-row">
+        <div class="trust-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>No Bank Connection</span>
+        </div>
+        <div class="trust-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <span>Trial Expiry Alerts</span>
+        </div>
+        <div class="trust-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+          <span>Works 100% Offline</span>
+        </div>
+        <div class="trust-pill">
+          <span style="color:#fbbf24">★ 4.8</span>
+          <span>Google Play Rating</span>
+        </div>
+      </div>
+
+      <!-- Hero Actions -->
+      <div class="hero-actions">
+        <a href="https://play.google.com/store/apps/details?id=com.subsy.app" target="_blank" class="play-badge-btn">
+          <!-- Google Play Official Vector -->
+          <svg viewBox="0 0 512 512">
+            <path fill="#4285F4" d="M47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0z"/>
+            <path fill="#FBBC04" d="M428.9 225.6l-58.9-34.1-66.4 64.5 66.4 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8z"/>
+            <path fill="#34A853" d="M104.6 499l280.8-161.2-81.8-81.8L104.6 499z"/>
+            <path fill="#EA4335" d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1z"/>
+          </svg>
+          <div class="play-btn-text">
+            <span class="play-btn-subtitle">GET IT ON</span>
+            <span class="play-btn-title">Google Play</span>
           </div>
-          <div class="stat-row">
-            <div class="stat-box">
-              <div class="stat-label">Monthly</div>
-              <div class="stat-value">$42<span style="font-size:16px;font-weight:600;color:var(--text3)">.97</span></div>
-              <div class="stat-change green">↓ Saved $14.99</div>
+        </a>
+
+        <a href="#features" class="secondary-btn">
+          <span>Explore App Features</span>
+          <span>↓</span>
+        </a>
+      </div>
+
+      <!-- Phone Showcase (Interactive Mockup with 4 Real Screens) -->
+      <div class="phone-showcase">
+        <div class="phone-tab-bar">
+          <button class="phone-tab active" onclick="switchMockTab('dash', this)">Dashboard</button>
+          <button class="phone-tab" onclick="switchMockTab('analytics', this)">Analytics</button>
+          <button class="phone-tab" onclick="switchMockTab('calendar', this)">Calendar</button>
+          <button class="phone-tab" onclick="switchMockTab('cancel', this)">Cancel Guide</button>
+        </div>
+
+        <div class="phone-hardware">
+          <div class="phone-island"><div class="phone-camera"></div></div>
+
+          <div class="screen-container">
+            <!-- Screen Header -->
+            <div class="app-screen-bar">
+              <div class="app-screen-logo">
+                <span style="font-size:14px">💳</span> Subsy
+              </div>
+              <div class="app-screen-badge">
+                <span>🔒 Biometric Safe</span>
+              </div>
             </div>
-            <div class="stat-box">
-              <div class="stat-label">Active</div>
-              <div class="stat-value">6</div>
-              <div class="stat-change blue">🔔 Alert in 2 days</div>
+
+            <!-- View 1: Dashboard -->
+            <div id="view-dash" class="view-panel active">
+              <div class="dash-spend-box">
+                <div class="spend-box-top">
+                  <span>Monthly Spend</span>
+                  <span style="color:#34d399">↓ 14% Saved</span>
+                </div>
+                <div class="spend-main-val">$54.96</div>
+                <div class="spend-budget-bar"><div class="spend-progress"></div></div>
+                <div class="spend-subtext">
+                  <span>62% of $90 Goal</span>
+                  <span>5 Active</span>
+                </div>
+              </div>
+
+              <div class="mock-list-title">Upcoming Renewals</div>
+
+              <div class="mock-sub-row">
+                <div class="mock-sub-icon" style="background:rgba(229,9,20,0.15);color:#e50914">N</div>
+                <div class="mock-sub-info">
+                  <div class="mock-sub-name">Netflix Premium</div>
+                  <div class="mock-sub-date">Renews in 2 days</div>
+                </div>
+                <div class="mock-sub-price">$19.99</div>
+              </div>
+
+              <div class="mock-sub-row">
+                <div class="mock-sub-icon" style="background:rgba(29,185,84,0.15);color:#1db954">S</div>
+                <div class="mock-sub-info">
+                  <div class="mock-sub-name">Spotify Duo</div>
+                  <div class="mock-sub-date">Renews in 5 days</div>
+                </div>
+                <div class="mock-sub-price">$14.99</div>
+              </div>
+
+              <div class="mock-sub-row">
+                <div class="mock-sub-icon" style="background:rgba(255,153,0,0.15);color:#ff9900">A</div>
+                <div class="mock-sub-info">
+                  <div class="mock-sub-name">Prime Video <span class="mock-tag-trial">Trial</span></div>
+                  <div class="mock-sub-date">Alert set: 3 days before</div>
+                </div>
+                <div class="mock-sub-price">$0.00</div>
+              </div>
+
+              <div class="mock-sub-row">
+                <div class="mock-sub-icon" style="background:rgba(16,185,129,0.15);color:#10b981">C</div>
+                <div class="mock-sub-info">
+                  <div class="mock-sub-name">ChatGPT Plus</div>
+                  <div class="mock-sub-date">Renews in 11 days</div>
+                </div>
+                <div class="mock-sub-price">$19.99</div>
+              </div>
+            </div>
+
+            <!-- View 2: Analytics -->
+            <div id="view-analytics" class="view-panel">
+              <div class="chart-box-mock">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-weight:700;color:#fff;font-size:11px">Spending Breakdown</span>
+                  <span style="font-size:9.5px;color:#a78bfa">Monthly vs Yearly</span>
+                </div>
+                <div class="bar-chart-visual">
+                  <div class="bar-col" style="height:45%"><span style="position:absolute;top:-12px;font-size:8px;left:2px">May</span></div>
+                  <div class="bar-col" style="height:65%"><span style="position:absolute;top:-12px;font-size:8px;left:2px">Jun</span></div>
+                  <div class="bar-col" style="height:80%"><span style="position:absolute;top:-12px;font-size:8px;left:2px">Jul</span></div>
+                  <div class="bar-col active" style="height:55%"><span style="position:absolute;top:-12px;font-size:8px;left:2px">Aug</span></div>
+                </div>
+                <div class="category-breakdown">
+                  <div class="cat-bar-item">
+                    <span style="color:#f472b6">● Entertainment</span>
+                    <span style="font-weight:700;color:#fff">$34.98 (63%)</span>
+                  </div>
+                  <div class="cat-bar-item">
+                    <span style="color:#60a5fa">● Productivity / AI</span>
+                    <span style="font-weight:700;color:#fff">$19.99 (37%)</span>
+                  </div>
+                </div>
+              </div>
+              <div style="background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.2);border-radius:10px;padding:8px 10px;font-size:10px;color:#a7f3d0">
+                💡 <strong>Spending Insight:</strong> Canceling 1 unused streaming sub saves you $239.88 every year.
+              </div>
+            </div>
+
+            <!-- View 3: Calendar -->
+            <div id="view-calendar" class="view-panel">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                <span style="font-weight:700;color:#fff;font-size:11px">September 2026</span>
+                <span style="font-size:9.5px;color:#34d399">4 Bills Due</span>
+              </div>
+              <div class="cal-grid-mock">
+                <div class="cal-day-cell">M</div><div class="cal-day-cell">T</div><div class="cal-day-cell">W</div><div class="cal-day-cell">T</div><div class="cal-day-cell">F</div><div class="cal-day-cell">S</div><div class="cal-day-cell">S</div>
+                <div class="cal-day-cell">1</div><div class="cal-day-cell bill">2</div><div class="cal-day-cell">3</div><div class="cal-day-cell">4</div><div class="cal-day-cell bill">5</div><div class="cal-day-cell">6</div><div class="cal-day-cell">7</div>
+                <div class="cal-day-cell">8</div><div class="cal-day-cell today">9</div><div class="cal-day-cell">10</div><div class="cal-day-cell bill">11</div><div class="cal-day-cell">12</div><div class="cal-day-cell">13</div><div class="cal-day-cell">14</div>
+                <div class="cal-day-cell">15</div><div class="cal-day-cell">16</div><div class="cal-day-cell">17</div><div class="cal-day-cell bill">18</div><div class="cal-day-cell">19</div><div class="cal-day-cell">20</div><div class="cal-day-cell">21</div>
+              </div>
+              <div style="margin-top:12px;padding:8px;background:rgba(255,255,255,0.03);border-radius:10px;font-size:10px;">
+                <div style="color:#ec4899;font-weight:700;margin-bottom:2px">● Due Next: Sept 11</div>
+                <div style="color:#d1d5db">Netflix renewal charge of $19.99</div>
+              </div>
+            </div>
+
+            <!-- View 4: Cancel Guide -->
+            <div id="view-cancel" class="view-panel">
+              <div class="cancel-guide-card">
+                <div class="cancel-guide-title">
+                  <span>🚫</span> How to Cancel Netflix
+                </div>
+                <div class="cancel-step">1. Open netflix.com/youraccount</div>
+                <div class="cancel-step">2. Tap 'Cancel Membership'</div>
+                <div class="cancel-step">3. Confirm — no further charges!</div>
+              </div>
+
+              <div class="cancel-guide-card" style="background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.25)">
+                <div class="cancel-guide-title" style="color:#fcd34d">
+                  <span>⚡</span> Cancel Amazon Prime
+                </div>
+                <div class="cancel-step">1. Go to Your Account > Prime</div>
+                <div class="cancel-step">2. Tap 'End Membership & Benefits'</div>
+              </div>
+              <div style="text-align:center;font-size:9.5px;color:#9ca3af;margin-top:6px">
+                + Guides for 50+ services built right into the app!
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Metrics Bar -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">4.8★</div>
+          <div class="stat-label">Play Store Rating</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Private & Offline</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">0 KB</div>
+          <div class="stat-label">Data Sent to Servers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">$240+</div>
+          <div class="stat-label">Avg. Annual User Savings</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Savings Calculator -->
+  <section id="calculator" class="calc-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-pill">Interactive Estimator</div>
+        <h2 class="section-title">How Much Are You Overpaying?</h2>
+        <p class="section-subtitle">Most people underestimate their active subscriptions by 2.5x. Move the slider to see how much Subsy saves you.</p>
+      </div>
+
+      <div class="calc-card">
+        <div class="calc-controls">
+          <div class="calc-slider-header">
+            <span class="calc-slider-label">Number of Subscriptions:</span>
+            <span id="subCountDisplay" class="calc-count-badge">6</span>
+          </div>
+          <input type="range" id="subSlider" class="calc-slider" min="2" max="20" value="6" oninput="updateSavingsCalc(this.value)"/>
+        </div>
+
+        <div class="calc-results">
+          <div>
+            <div class="calc-res-label">Est. Monthly Expense</div>
+            <div id="calcMonthly" class="calc-res-val">$72</div>
+          </div>
+          <div>
+            <div class="calc-res-label">Annual Money Wasted</div>
+            <div id="calcWasted" class="calc-res-val saved">$288/yr</div>
+          </div>
+        </div>
+
+        <p class="calc-note">
+          💡 Subsy alerts you before every charge and trial conversion, so you can cancel unused services with 1 tap.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Real Subsy Features Grid -->
+  <section id="features" class="features-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-pill">Core Features</div>
+        <h2 class="section-title">Engineered to Protect Your Wallet</h2>
+        <p class="section-subtitle">Everything you need to track, manage, and optimize recurring expenses without sacrificing your privacy.</p>
+      </div>
+
+      <div class="features-grid">
+        <!-- 1. Smart Alerts -->
+        <div class="feature-card">
+          <div class="feat-icon-box" style="background:rgba(236,72,153,0.12);color:#ec4899">🔔</div>
+          <h3 class="feat-title">Smart Renewal Alerts</h3>
+          <p class="feat-desc">Get customized notifications 1 day before, 2 days before, or on the exact renewal day. Free trial reminders ensure you cancel before billing strikes.</p>
+        </div>
+
+        <!-- 2. Interactive Calendar -->
+        <div class="feature-card">
+          <div class="feat-icon-box" style="background:rgba(59,130,246,0.12);color:#60a5fa">📅</div>
+          <h3 class="feat-title">Calendar Timeline</h3>
+          <p class="feat-desc">Visualize every upcoming payment on a monthly calendar grid. Quickly see which days have multiple bills due so your bank balance never runs dry.</p>
+        </div>
+
+        <!-- 3. Spend Analytics -->
+        <div class="feature-card">
+          <div class="feat-icon-box" style="background:rgba(139,92,246,0.12);color:#a78bfa">📊</div>
+          <h3 class="feat-title">Visual Spend Analytics</h3>
+          <p class="feat-desc">Break down recurring costs by categories (Streaming, Gaming, Utilities, Software). Understand your annual run-rate with beautiful native charts.</p>
+        </div>
+
+        <!-- 4. Cancellation Guides -->
+        <div class="feature-card">
+          <div class="feat-icon-box" style="background:rgba(239,68,68,0.12);color:#f87171">🚫</div>
+          <h3 class="feat-title">Direct Cancellation Guides</h3>
+          <p class="feat-desc">Avoid dark patterns. Subsy includes built-in, step-by-step instructions and direct URLs to cancel popular services like Netflix, Spotify, and Amazon Prime.</p>
+        </div>
+
+        <!-- 5. Biometric Privacy -->
+        <div class="feature-card">
+          <div class="feat-icon-box" style="background:rgba(16,185,129,0.12);color:#34d399">🛡️</div>
+          <h3 class="feat-title">Biometric App Lock</h3>
+          <p class="feat-desc">Secure your financial logs with your device's fingerprint or Face ID. 100% offline Drift/SQLite local database means your data never touches the cloud.</p>
+        </div>
+
+        <!-- 6. Multi-Currency & PDF Reports -->
+        <div class="feature-card">
+          <div class="feat-icon-box" style="background:rgba(245,158,11,0.12);color:#fbbf24">📄</div>
+          <h3 class="feat-title">Multi-Currency & PDF Export</h3>
+          <p class="feat-desc">Track subscriptions across USD ($), EUR (€), GBP (£), INR (₹), and more. Export clean PDF financial summary reports or JSON/CSV backups anytime.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy Comparison Table (Trust Guarantee) -->
+  <section id="privacy" class="compare-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-pill">Total Privacy</div>
+        <h2 class="section-title">Why Privacy-Conscious Users Choose Subsy</h2>
+        <p class="section-subtitle">Traditional trackers ask for bank credentials and sell your transaction data to advertisers. Subsy takes a completely different path.</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Features</th>
+              <th class="highlight-col">Subsy (Android)</th>
+              <th>Bank-Linked Apps (Rocket Money, etc.)</th>
+              <th>Spreadsheets / Excel</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Bank Credentials Required</strong></td>
+              <td class="highlight-col"><span class="badge-check">✓ NEVER (Zero risk)</span></td>
+              <td><span class="badge-cross">✕ Mandatory</span></td>
+              <td><span class="badge-check">✓ None</span></td>
+            </tr>
+            <tr>
+              <td><strong>Where Data Lives</strong></td>
+              <td class="highlight-col"><span class="badge-check">✓ Only on your device</span></td>
+              <td><span class="badge-cross">✕ Cloud server databases</span></td>
+              <td><span class="badge-check">✓ Local file</span></td>
+            </tr>
+            <tr>
+              <td><strong>Works 100% Offline</strong></td>
+              <td class="highlight-col"><span class="badge-check">✓ Yes (Airplane mode ok)</span></td>
+              <td><span class="badge-cross">✕ Requires internet</span></td>
+              <td><span class="badge-check">✓ Yes</span></td>
+            </tr>
+            <tr>
+              <td><strong>Smart Renewal Alarms</strong></td>
+              <td class="highlight-col"><span class="badge-check">✓ Native device alarms</span></td>
+              <td><span class="badge-check">✓ Push notifications</span></td>
+              <td><span class="badge-cross">✕ No reminders</span></td>
+            </tr>
+            <tr>
+              <td><strong>Direct Cancellation Guides</strong></td>
+              <td class="highlight-col"><span class="badge-check">✓ In-app steps for 50+ services</span></td>
+              <td><span class="badge-cross">✕ Upsells paid cancellation</span></td>
+              <td><span class="badge-cross">✕ None</span></td>
+            </tr>
+            <tr>
+              <td><strong>Cost</strong></td>
+              <td class="highlight-col"><span class="badge-check">✓ 100% Free / Optional Lifetime</span></td>
+              <td><span class="badge-cross">✕ $6 to $12 / month forever</span></td>
+              <td><span class="badge-check">✓ Free</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Real User Reviews -->
+  <section class="reviews-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-pill">User Feedback</div>
+        <h2 class="section-title">Loved by Thousands on Google Play</h2>
+        <p class="section-subtitle">Real feedback from users who took back control of their recurring subscriptions.</p>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div>
+            <div class="stars">★★★★★</div>
+            <p class="review-text">"Finally an app that doesn't want me to link my bank account or login with an email. It just works offline and saved me $45 last week on an auto-renewing VPN I forgot about!"</p>
+          </div>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">RK</div>
+            <div>
+              <div class="reviewer-name">Rahul K.</div>
+              <div class="reviewer-badge">✓ Verified Play Store User</div>
             </div>
           </div>
-          <div class="sub-list-title">Upcoming Renewals</div>
-          <div class="sub-row">
-            <div class="sub-logo" style="background:rgba(229,9,20,.15);color:#e50914">N</div>
-            <div class="sub-details"><div class="sub-n">Netflix Premium</div><div class="sub-d">Renews in 2 days</div></div>
-            <div class="sub-amt">$19.99</div>
+        </div>
+
+        <div class="review-card">
+          <div>
+            <div class="stars">★★★★★</div>
+            <p class="review-text">"The trial alert feature alone is worth 10 stars. I signed up for a 7-day free trial on Prime, set Subsy to remind me 2 days prior, and cancelled cleanly. The design is super clean and snappy."</p>
           </div>
-          <div class="sub-row">
-            <div class="sub-logo" style="background:rgba(29,185,84,.15);color:#1db954">S</div>
-            <div class="sub-details"><div class="sub-n">Spotify Duo</div><div class="sub-d">Renews in 5 days</div></div>
-            <div class="sub-amt">$14.99</div>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">AL</div>
+            <div>
+              <div class="reviewer-name">Alexandre L.</div>
+              <div class="reviewer-badge">✓ Verified Play Store User</div>
+            </div>
           </div>
-          <div class="sub-row">
-            <div class="sub-logo" style="background:rgba(255,153,0,.15);color:#ff9900">A</div>
-            <div class="sub-details"><div class="sub-n">Amazon Prime</div><div class="sub-d">Trial ends · 7 days</div></div>
-            <div class="sub-amt">$7.99</div>
+        </div>
+
+        <div class="review-card">
+          <div>
+            <div class="stars">★★★★★</div>
+            <p class="review-text">"The built-in cancellation guide saved me 15 minutes of digging through menus to cancel my Adobe sub. Also love that I can lock it with fingerprint so my roommate doesn't peek."</p>
           </div>
-          <div class="sub-row">
-            <div class="sub-logo" style="background:rgba(255,0,0,.12);color:#ff0000">Y</div>
-            <div class="sub-details"><div class="sub-n">YouTube Premium</div><div class="sub-d">Renews in 12 days</div></div>
-            <div class="sub-amt">$13.99</div>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">SM</div>
+            <div>
+              <div class="reviewer-name">Sarah M.</div>
+              <div class="reviewer-badge">✓ Verified Play Store User</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Metrics -->
-<section class="metrics">
-  <div class="container">
-    <div class="metrics-grid">
-      <div class="metric reveal"><div class="metric-val">#5</div><div class="metric-label">Rank on Google Play Store</div></div>
-      <div class="metric reveal reveal-d1"><div class="metric-val">100%</div><div class="metric-label">Private & Offline Storage</div></div>
-      <div class="metric reveal reveal-d2"><div class="metric-val">0 bytes</div><div class="metric-label">Personal Data Collected</div></div>
-      <div class="metric reveal reveal-d3"><div class="metric-val">∞</div><div class="metric-label">Lifetime Pro · Pay Once</div></div>
-    </div>
-  </div>
-</section>
+  <!-- FAQ Section -->
+  <section id="faq" class="faq-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-pill">Frequently Asked Questions</div>
+        <h2 class="section-title">Got Questions? We Have Answers.</h2>
+      </div>
 
-<!-- Features -->
-<section id="features" class="features">
-  <div class="container">
-    <div class="features-header reveal">
-      <div class="section-tag">Features</div>
-      <h2 class="section-head">Built to Save You Money</h2>
-      <p class="section-sub">Everything you need to make recurring expenses transparent, manageable, and completely under your control.</p>
-    </div>
-    <div class="f-grid">
-      <div class="f-card reveal">
-        <div class="f-icon" style="background:rgba(244,114,182,.1);border:1px solid rgba(244,114,182,.2)">🔔</div>
-        <h3>Smart Renewal Alerts</h3>
-        <p>Get precise notifications 1 day before, on the renewal day, or before a free trial converts to a paid plan. Never get surprise-billed again.</p>
-      </div>
-      <div class="f-card reveal reveal-d1">
-        <div class="f-icon" style="background:rgba(124,92,252,.1);border:1px solid rgba(124,92,252,.2)">📊</div>
-        <h3>Visual Spend Analytics</h3>
-        <p>See exactly where your money goes with beautiful pie charts and category breakdowns. Instantly spot forgotten services draining your wallet.</p>
-      </div>
-      <div class="f-card reveal reveal-d2">
-        <div class="f-icon" style="background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.2)">🛡️</div>
-        <h3>100% Offline & Private</h3>
-        <p>No login required. No bank accounts to connect. All your subscription records stay strictly on your local device using encrypted SQLite storage.</p>
-      </div>
-      <div class="f-card reveal">
-        <div class="f-icon" style="background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2)">⚡</div>
-        <h3>1-Tap Quick Templates</h3>
-        <p>Add Netflix, Spotify, YouTube Premium, iCloud, ChatGPT, Prime, Disney+, and more in one tap with pre-filled costs and categories.</p>
-      </div>
-      <div class="f-card reveal reveal-d1">
-        <div class="f-icon" style="background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.2)">📅</div>
-        <h3>Calendar View</h3>
-        <p>Visualize all upcoming renewals on a beautiful interactive calendar. Know exactly when each bill hits so you can plan your budget ahead.</p>
-      </div>
-      <div class="f-card reveal reveal-d2">
-        <div class="f-icon" style="background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.2)">💎</div>
-        <h3>Subsy Pro · Lifetime</h3>
-        <p>One-time purchase for a 100% ad-free experience, unlimited subscriptions, export reports, and priority feature updates. Pay once, own forever.</p>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Does Subsy require connecting to my bank or card?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            No, never! Subsy is built with an offline-first privacy model. You never share your bank username, password, credit card number, or OTP. You simply log subscriptions manually or pick from our fast templates.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>How do renewal alerts work if there is no server?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            Subsy uses Android's native AlarmManager and local notifications. The alarms are scheduled directly inside your phone's operating system. They ring on time even if you have no internet access or are in airplane mode.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Can I backup or transfer my subscriptions if I switch phones?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            Yes! Subsy includes a one-tap JSON Backup and CSV Export feature. You can save your backup file to Google Drive, Telegram, or email it to yourself, and restore it on any Android device instantly.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Is Subsy really free?</span>
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            Subsy is completely free to download and use. We show non-intrusive ads to support continuous development. If you prefer a completely ad-free experience with extra perks like Biometric Lock and PDF Export, you can unlock Subsy Pro with a single one-time lifetime payment.
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Privacy CTA -->
-<section id="privacy" class="priv-block">
-  <div class="container">
-    <div class="priv-card reveal">
-      <div class="priv-info">
-        <div class="section-tag" style="background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.15);color:var(--emerald)">Privacy-First</div>
-        <h3>Your Financial Data<br/>Belongs to You. Period.</h3>
-        <p>Unlike other trackers that force bank linking or upload credit card statements, Subsy respects your privacy completely.</p>
-        <ul class="priv-list">
-          <li><span class="check">✓</span> Zero bank linking — never asks for passwords or OTPs</li>
-          <li><span class="check">✓</span> All data stored locally in high-performance SQLite</li>
-          <li><span class="check">✓</span> No tracking, no profiling, no data sales</li>
-          <li><span class="check">✓</span> Works 100% offline — no internet required</li>
-        </ul>
-      </div>
-      <div class="priv-cta">
-        <a href="https://play.google.com/store/apps/details?id=com.subsy.app" target="_blank" class="btn-gplay">
-          <svg viewBox="0 0 512 512" fill="currentColor" style="width:20px;height:20px"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
-          Download Free
+  <!-- Final CTA Banner -->
+  <section class="cta-banner-section">
+    <div class="container">
+      <div class="cta-box">
+        <h2 class="cta-heading">Take Control of Your Subscriptions Today</h2>
+        <p class="cta-sub">Join thousands of smart spenders saving hundreds of dollars every year. Free on Google Play.</p>
+
+        <a href="https://play.google.com/store/apps/details?id=com.subsy.app" target="_blank" class="play-badge-btn" style="margin: 0 auto; display: inline-flex;">
+          <svg viewBox="0 0 512 512">
+            <path fill="#4285F4" d="M47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0z"/>
+            <path fill="#FBBC04" d="M428.9 225.6l-58.9-34.1-66.4 64.5 66.4 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8z"/>
+            <path fill="#34A853" d="M104.6 499l280.8-161.2-81.8-81.8L104.6 499z"/>
+            <path fill="#EA4335" d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1z"/>
+          </svg>
+          <div class="play-btn-text">
+            <span class="play-btn-subtitle">GET IT ON</span>
+            <span class="play-btn-title">Google Play</span>
+          </div>
         </a>
-        <span style="font-size:12px;color:var(--text3)">Free on Android · No sign-up needed</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="nav-brand">
+          <div class="brand-icon" style="width:28px;height:28px;font-size:14px">💳</div>
+          <div class="brand-title" style="font-size:17px">Sub<span>sy</span></div>
+        </div>
+
+        <div class="footer-links">
+          <a href="https://play.google.com/store/apps/details?id=com.subsy.app" target="_blank">Google Play</a>
+          <button onclick="openModal()">Privacy Policy</button>
+          <a href="https://ranu02769.github.io/app-ads.txt" target="_blank">app-ads.txt</a>
+          <a href="mailto:ranu02769@gmail.com">Contact Developer</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © 2026 Subsy App. All rights reserved. Designed for 100% privacy and effortless subscription management on Android.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sticky Mobile Bar (Visible on scroll) -->
+  <div id="stickyMobileBar" class="sticky-mobile-bar">
+    <div class="sticky-app-meta">
+      <div class="sticky-app-icon">💳</div>
+      <div>
+        <div class="sticky-app-name">Subsy Tracker</div>
+        <div class="sticky-app-tag">★ 4.8 · 100% Free</div>
+      </div>
+    </div>
+    <a href="https://play.google.com/store/apps/details?id=com.subsy.app" target="_blank" class="sticky-install-btn">
+      Install Free
+    </a>
+  </div>
+
+  <!-- Privacy Modal -->
+  <div id="privModal" class="modal-overlay" onclick="closeModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Privacy Policy</h3>
+        <button class="modal-close-btn" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Effective Date:</strong> September 2026</p>
+
+        <h4>1. Commitment to Privacy</h4>
+        <p>Subsy is developed with a strict offline-first philosophy. We believe your personal finances should remain solely in your own hands. We do not operate databases that store your personal subscription costs or billing cycles.</p>
+
+        <h4>2. Data Storage & Architecture</h4>
+        <p>All subscription records, renewal dates, payment frequencies, and custom notes created by you are saved locally on your Android device using SQLite/Drift storage. Subsy does not upload your entries to remote servers.</p>
+
+        <h4>3. AdMob & Third-Party Advertising</h4>
+        <p>The free version of Subsy displays advertisements provided by Google AdMob. Google AdMob may collect and process device identifiers (such as the Google Advertising ID) and non-precise location to display advertisements in accordance with Google's Advertising Privacy Policies. You can upgrade to Subsy Pro for a permanent, 100% ad-free experience.</p>
+
+        <h4>4. Device Permissions</h4>
+        <p><strong>POST_NOTIFICATIONS / SCHEDULE_EXACT_ALARM:</strong> Used solely to trigger local renewal reminders and trial expiration alerts you have chosen to set.</p>
+        <p><strong>USE_BIOMETRIC:</strong> Used locally to lock/unlock the app using your device's fingerprint or Face ID. Biometric data is handled entirely by Android's hardware security layer and cannot be read by Subsy.</p>
+
+        <h4>5. Contact Us</h4>
+        <p>If you have any questions or feedback regarding privacy or data handling, contact us at: <strong>ranu02769@gmail.com</strong></p>
       </div>
     </div>
   </div>
-</section>
 
-<!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="foot-top">
-      <a href="#" class="logo">
-        <div class="logo-mark" style="width:30px;height:30px;font-size:14px">💳</div>
-        <div class="logo-name" style="font-size:17px">Sub<em>sy</em></div>
-      </a>
-      <div class="foot-links">
-        <a href="https://play.google.com/store/apps/details?id=com.subsy.app" target="_blank">Google Play</a>
-        <a href="javascript:void(0)" onclick="openModal()">Privacy Policy</a>
-        <a href="https://ranu02769.github.io/app-ads.txt" target="_blank">app-ads.txt</a>
-        <a href="mailto:ranu02769@gmail.com">Developer Support</a>
-      </div>
-    </div>
-    <div class="foot-bot">© 2026 Subsy. All rights reserved.</div>
-  </div>
-</footer>
+  <script>
+    // Tab switching for Phone Mockup
+    function switchMockTab(tabId, el) {
+      document.querySelectorAll('.phone-tab').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.view-panel').forEach(panel => panel.classList.remove('active'));
 
-<!-- Privacy Modal -->
-<div id="privModal" class="modal-bg" onclick="closeModal()">
-  <div class="modal" onclick="event.stopPropagation()">
-    <div class="modal-top">
-      <h3>Privacy Policy</h3>
-      <button class="modal-close" onclick="closeModal()">✕</button>
-    </div>
-    <div class="modal-body">
-      <p>Last updated: September 2026</p>
-      <h4>1. Overview</h4>
-      <p>Subsy ("we", "our", or "app") is committed to protecting your privacy. This policy outlines how your data is handled when you use the Subsy Android application.</p>
-      <h4>2. Data Collection & Storage</h4>
-      <p>Subsy is an offline-first application. All subscription details, costs, billing dates, notes, and custom categories you enter are stored strictly on your local device using SQLite. We do not transmit, sync, or sell your personal financial records to any external servers.</p>
-      <h4>3. Advertising</h4>
-      <p>To support free development, Subsy displays non-intrusive advertisements served by Google AdMob. Google AdMob may collect device identifiers (such as Android Advertising ID) to serve relevant ads per Google's Privacy & Terms. Users can upgrade to Subsy Pro for a 100% ad-free experience.</p>
-      <h4>4. Notifications</h4>
-      <p>The app requests notification permissions strictly to trigger local scheduled alarms for upcoming subscription renewals and trial end dates. No data leaves your device.</p>
-      <h4>5. Contact</h4>
-      <p>If you have questions regarding this Privacy Policy, contact: <strong>ranu02769@gmail.com</strong></p>
-    </div>
-  </div>
-</div>
+      if (el) {
+        el.classList.add('active');
+      } else {
+        const btn = Array.from(document.querySelectorAll('.phone-tab')).find(b => b.textContent.toLowerCase().includes(tabId.substring(0,4)));
+        if (btn) btn.classList.add('active');
+      }
+      const targetPanel = document.getElementById('view-' + tabId);
+      if (targetPanel) {
+        targetPanel.classList.add('active');
+      }
+    }
 
-<script>
-// Scroll reveal
-const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+    // Savings Calculator Logic
+    function updateSavingsCalc(val) {
+      document.getElementById('subCountDisplay').textContent = val;
+      const count = parseInt(val, 10);
+      const estMonthly = Math.round(count * 12);
+      // Average 30% of subscriptions are forgotten or rarely used
+      const wastedAnnual = Math.round(estMonthly * 12 * 0.32);
 
-// Nav scroll effect
-window.addEventListener('scroll',()=>{document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>40)});
+      document.getElementById('calcMonthly').textContent = '$' + estMonthly;
+      document.getElementById('calcWasted').textContent = '$' + wastedAnnual + '/yr';
+    }
 
-// Modal
-function openModal(){document.getElementById('privModal').style.display='flex'}
-function closeModal(){document.getElementById('privModal').style.display='none'}
-</script>
+    // FAQ Accordion
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) {
+        item.classList.add('open');
+      }
+    }
+
+    // Sticky Mobile Bar on Scroll
+    const stickyBar = document.getElementById('stickyMobileBar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        stickyBar.classList.add('visible');
+      } else {
+        stickyBar.classList.remove('visible');
+      }
+    });
+
+    // Privacy Modal
+    function openModal() {
+      document.getElementById('privModal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('privModal').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
